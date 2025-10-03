@@ -1,0 +1,14 @@
+
+
+1) Open Windows
+2) Search Anaconda prompt
+3) Change directory to desired directory
+4) type -> pycharm .         [This creates pycharm instance]
+
+
+
+Create environment:
+1) conda create -p venv python==3.8 -y   {creating environment with python version=3.8 and yes to all permissions}
+2) conda activate venv/
+
+
