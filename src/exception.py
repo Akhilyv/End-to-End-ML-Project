@@ -1,0 +1,23 @@
+import sys
+import logging
+import logger
+
+def error_message_detail(error, error_detail:sys):      ## Creating our own exceptional Handling, error = error wherver we get, error_detail = Detail regarding the error which is given or controlled by sys package
+    _,_,exc_tb = error_detail.exc_info()        ## We get three details regarding error, we are not interested in first and second {So we left blanks}
+                                                ## We are interested in third detail, so we store it
+    file_name = exc_tb.tb_frame.f_code.co_filename  ## Inside the above variable "exc_tb" there is tb_frame, f_code and co_filename. In co_filename -> we get the file name which has error
+
+    error_message = "Error occured in python script name [{0}] line number [{1}] error message[{2}]".format(
+        file_name,exc_tb.tb_lineno,str(error))   ## {0} = file_name, {1} = exec_tb.tb_lineno, {3} = str(error) error message
+
+    return error_message
+
+
+class CustomException(Exception):
+    def __init__(self, error_message, error_detail:sys):
+        super().__init__(error_message)
+        self.error_message = error_message_detail(error_message, error_detail=error_detail)
+
+    def __str__(self):
+        return self.error_message
+
