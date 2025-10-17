@@ -12,3 +12,5 @@ Create environment:
 2) conda activate venv/
 
 
+To install requirements.txt file [packages install]
+1) pip install -r requirements.txt

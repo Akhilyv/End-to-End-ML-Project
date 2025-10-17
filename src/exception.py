@@ -1,6 +1,5 @@
 import sys
-import logging
-import logger
+from src.logger import logging
 
 def error_message_detail(error, error_detail:sys):      ## Creating our own exceptional Handling, error = error wherver we get, error_detail = Detail regarding the error which is given or controlled by sys package
     _,_,exc_tb = error_detail.exc_info()        ## We get three details regarding error, we are not interested in first and second {So we left blanks}
@@ -20,4 +19,3 @@ class CustomException(Exception):
 
     def __str__(self):
         return self.error_message
-

@@ -14,7 +14,6 @@ logging.basicConfig(
     level = logging.INFO,
 )
 
-print("The Error in the file is printed here ------------>", "%(message)s")
 
 if __name__=="__main__":
     logging.info("Logging has started")         ## logging.info initiates the looging.basicConfig method and creates the file
