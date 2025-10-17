@@ -14,3 +14,11 @@ Create environment:
 
 To install requirements.txt file [packages install]
 1) pip install -r requirements.txt
+
+
+Git steps:
+1) git add .  {To add files}
+2) git reset  {Undo the git add}
+3) git status {check status of added files}
+4) git commit -m "Message"
+5) git push -u origin main
