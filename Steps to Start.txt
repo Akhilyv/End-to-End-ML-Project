@@ -22,3 +22,8 @@ Git steps:
 3) git status {check status of added files}
 4) git commit -m "Message"
 5) git push -u origin main
+
+
+
+AWS Steps:
+1) 
