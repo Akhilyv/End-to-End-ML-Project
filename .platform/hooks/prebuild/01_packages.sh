@@ -1,4 +1,4 @@
 #!/bin/bash
 set -e
-# Install build toolchain for heavy ML packages
-dnf install -y gcc gcc-c++ make libgomp
+# Ensure native toolchain present (needed by NumPy/SciPy/etc.)
+dnf -y install gcc-c++ make libgomp

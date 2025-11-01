@@ -1,12 +1,13 @@
 #!/bin/bash
 set -e
-# Create 2GB swap if not present (helps pip installs)
+# Create a 2GB swap file (helps big wheels compile/extract)
 if ! swapon --show | grep -q "/swapfile"; then
-  fallocate -l 2G /swapfile || dd if=/dev/zero of=/swapfile bs=1M count=2048
+  if command -v fallocate >/dev/null 2>&1; then
+    fallocate -l 2G /swapfile
+  else
+    dd if=/dev/zero of=/swapfile bs=1M count=2048
+  fi
   chmod 600 /swapfile
   mkswap /swapfile
   swapon /swapfile
-  if ! grep -q "/swapfile" /etc/fstab; then
-    echo "/swapfile none swap sw 0 0" >> /etc/fstab
-  fi
 fi
