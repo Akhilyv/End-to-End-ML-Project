@@ -1,17 +1,23 @@
 #!/bin/bash
-set -e
+set -euo pipefail
 
-# Ensure a big, disk-backed temp area exists
-mkdir -p /var/tmp/pip-tmp
+# Ensure disk-backed temp area
+mkdir -p /var/tmp
+chmod 1777 /var/tmp
 
-# If /tmp is not already a bind mount, bind it to /var/tmp so pip won't hit the small tmpfs
-if ! mountpoint -q /tmp; then
-  # Clean current /tmp to avoid mount failures due to open files
-  rm -rf /tmp/*
+# If /tmp is a tmpfs (RAM), replace it with a bind to /var/tmp
+if mount | grep -E ' on /tmp type tmpfs' > /dev/null; then
+  echo "EB prebuild: Rebinding /tmp from tmpfs to /var/tmp ..."
+  # copy anything already in /tmp to /var/tmp (best-effort)
+  cp -a /tmp/. /var/tmp/ 2>/dev/null || true
+
+  # Try normal unmount; if busy, do a lazy unmount
+  umount /tmp 2>/dev/null || umount -l /tmp
+
+  # Bind-mount disk-backed /var/tmp onto /tmp
   mount --bind /var/tmp /tmp
 fi
 
-# Show where /tmp now points and free space (for verification in logs)
-echo "EB prebuild: /tmp is now bound to /var/tmp"
+echo "EB prebuild: /tmp now points to:"
 mount | grep ' /tmp '
 df -h /tmp /var/tmp /
