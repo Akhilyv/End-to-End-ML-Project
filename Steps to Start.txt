@@ -27,3 +27,10 @@ Git steps:
 
 AWS Steps:
 1) 
+
+
+Permissions:
+chmod +x .platform/hooks/prebuild/00_swap.sh
+chmod +x .platform/hooks/prebuild/01_packages.sh
+chmod +x .platform/hooks/prebuild/02_pip_env.sh
+chmod +x .platform/hooks/prebuild/03_bind_tmp.sh
