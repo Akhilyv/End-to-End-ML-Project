@@ -22,8 +22,28 @@ Git steps:
 3) git status {check status of added files}
 4) git commit -m "Message"
 5) git push -u origin main
+6) git push origin main --force
+
 
 
 
 AWS Steps:
 1) 
+
+
+
+
+Docker steps to create container:
+1) docker build -t studentperformance_application .
+2) docker ps (To check the status and image id)
+3) docker stop imageid
+
+
+Docker steps to push container into dockerhub repository (Docker Repository online in google):
+1) Rename the exisiting image to format ("username/dockerimage"). Look below syntax
+2) docker tag studentperformance_application akhilyv/studentperformance_application:latest
+3) docker push akhilyv/studentperformance_application:latest
+4) docker run -d -p 5000:5000 akhilyv/studentperformance_application:latest
+5) check this link: http://127.0.0.1:5000/
+6) docker ps (To check the status and image id)
+7) docker stop imageid                        
