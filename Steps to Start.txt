@@ -25,11 +25,16 @@ Git steps:
 6) git push origin main --force
 
 
-
-
 AWS Steps:
 1) 
 
+AWS Linux Steps:
+1) sudo apt-get update -y
+2) sudo apt-get upgrade
+3) curl -fsSL https://get.docker.com -o get-docker.sh
+4) sudo sh get-docker.sh
+5) sudo usermod -aG docker ubuntu
+6) newgrp docker
 
 
 
